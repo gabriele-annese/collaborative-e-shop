@@ -1,21 +1,19 @@
-
-
 const products = [
     {   
         id: 1,
         title: 'Mac Mini',
         subtitle: 'Nuovi muscoli. Nuovi traguardi.',
-        url: 'mac_mini.jpg',
+        url: `mac_mini.jpg`,
         price: 1999.99,
         category: 'laptop',
         description: 'Il nostro computer desktop più versatile si lancia in una nuova dimensione. Mac mini ora ha il rivoluzionario chip Apple M1, CPU fino a 3 volte più rapida, grafica fino a 6 volte più scattante e il Neural Engine più evoluto, che assicura performance fino a 15 volte migliori per il machine learning. Preparati a lavorare, giocare e creare con una velocità e una potenza che prima d’ora non avresti mai immaginato.',
-        io: ['ethernet, wifi, thunderbolt, USB-A, Jack cuffie', 'HDMI 2.0']
+        io: ['ethernet, wifi, thunderbolt, USB-A, Jack cuffie', 'HDMI 2.0'],
     },
     {   
         id: 2,
         title: 'MacBook Air',
         subtitle: 'C’è una nuova potenza nell’Air.',
-        url: 'macbook_air.jpg',
+        url: `macbook_air.jpg`,
         price: 1299.00,
         category: 'laptop',
         description: 'Ti presentiamo il nuovo MacBook Air: il nostro portatile più sottile e leggero, completamente trasformato dal chip Apple M1. CPU fino a 3,5 volte più veloce. GPU fino a 5 volte più scattante. Il Neural Engine più evoluto di sempre, che assicura performance di machine learning fino a 9 volte migliori. Un’autonomia che su un MacBook Air non si era mai vista. E una tecnologia silenziosa, perché senza ventola. Ha una potenza senza precedenti, ed è pronto a seguirti ovunque.',
@@ -80,50 +78,44 @@ const products = [
         category: 'smartphone',
         description: 'Un chip superpotente. La velocità del 5G. Un sistema evoluto a doppia fotocamera. La resistenza del Ceramic Shield, più robusto di qualsiasi vetro per smartphone. E uno sfolgorante display OLED. iPhone 12 ha proprio tutto. Anche due formati perfetti.',
         io: ['wifi, USB-C, Jack cuffie', 'waterproof']
-    },
+    }
 ];
 
-const container = document.querySelector('.products-container');
-// printiamo i post
-genItem(products, container)
+
+//creiamo le card
+
+const productCont = document.querySelector('.product-conteiner')
 
 
-
-// *************funzione************//
-function genItem(array, container){
-    container.innerHTML = "";
-    for(let i = 0; i < array.length; i++){
-        const info = array[i];
-
-        // creare markup
-        container.innerHTML += ` 
-        <div class="item-card">
-            <div class="card-head">
-                <h2>${info.title}</h2>
-                <h3>${info.subtitle}</h3>
-                <img class="card-image" src="https://picsum.photos/200/300" alt="">
+for (let i = 0; i < products.length; i++) {
+    productCont.innerHTML += `
+    <div class="item-card">
+        <div class="card-head">
+            <h2>${products[i].title}</h2>
+            <h3>${products[i].subtitle}</h3>
+            <img src="./img/${products[i].url}" alt="">
+        </div>
+        <div class="d-none item-details">
+            <p class="item-description">${products[i].description}</p>
+            <h4 class="item-price">€ ${products[i].price}</h4>
+            <div class="sub-details">
+                <div class="item-category">${products[i].category}</div>
+                <div class="item-io">${products[i].io}</div>
             </div>
-            <div class="item-details d-none">
-                <p class="item-description">${info.description}</p>
-                <h4 class="item-price">${info.price}</h4>
-                <div class="sub-details">
-                    <h5 class="item-category">${info.category}</h5>
-                    <h6 class="item-io">${info.io}</h6>
-                </div>
-                <div class="cta">
-                    <button class="fav-btn clicked">
-                        <i class="fas fa-heart clicked"></i>
-                    </button>
-                    <button class="cart-btn">
-                        <i class="fas fa-cart-plus"></i>
-                    </button>
-                </div>
-                
+            <div class="cta">
+                <button class="fav-btn cta-btn">
+                    <i class="fas fa-heart "></i>
+                </button>
+                <button class="cart-btn cta-btn">
+                    <i class="fas fa-cart-plus"></i>
+                </button>
             </div>
         </div>
-        `;
-    }
+    </div>
+    `
 }
+
+
 const itemCards = document.querySelectorAll('.item-card');
 
 for (let i = 0; i < itemCards.length; i++) {
@@ -137,14 +129,6 @@ for (let i = 0; i < itemCards.length; i++) {
 const cartCounterCont = document.querySelector('.cart-counter');
 const cartValour = document.createElement('p');
 cartCounterCont.append(cartValour);
-
-
-
-
-
-
-
-
 
 
 
